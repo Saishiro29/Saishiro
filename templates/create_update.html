@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {% if article %}Редактировать статью{% else %}Создать статью{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>{% if article %}Редактировать статью{% else %}Создать статью{% endif %}</h1>
+    <form method="post">
+        <input type="text" name="title" id="title" class="form-control"
+               value="{{ article.title if article else '' }}"
+               placeholder="Введите название"><br>
+
+        <textarea name="intro" id="intro" class="form-control"
+                  placeholder="Введите описание">{{ article.intro if article else '' }}</textarea><br>
+
+        <textarea name="text" id="text" class="form-control"
+                  placeholder="Введите текст статьи">{{ article.text if article else '' }}</textarea><br>
+
+        <button class="btn btn-success" type="submit">
+          {% if article %}Обновить{% else %}Создать{% endif %}
+        </button>
+    </form>
+</div>
+{% endblock %}
